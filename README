@@ -1,6 +1,6 @@
-growl is based on jquery, like http://www.growl.info/ .
+jquery-growl is based on jquery, like http://www.growl.info/ .
 
-demo
+demo:
 
 <!DOCTYPE HTML>
 <html>
