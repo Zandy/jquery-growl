@@ -1,0 +1,21 @@
+jquery based growl like http://www.growl.info/
+
+demo
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jquery based growl demo</title>
+		<script type="text/javascript" src="/resource/js/jquery/growl/growl.js"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+		$(function() {
+			var msg = "demo";
+			var css = {color: 'red'};
+			$.growl(msg, css);
+		});
+		</script>
+	</body>
+</html>
