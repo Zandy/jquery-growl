@@ -1,52 +1,66 @@
 (function($) {
 	// @author Zandy
 	// growl 插件 -- 类似 growl @see http://www.growl.info/
+	function debug(obj) {
+		if (window.console && window.console.log)
+			window.console.log(obj);
+	};
+	var growlDivCss = {
+		position: 'fixed',
+		top: '12px',
+		right: '12px',
+		'z-index': 99999,
+		display: 'block'
+	};
+	var growlBoxCss = {
+		color: '#fff',
+		'background-color': '#333',
+		'font-size': '12px',
+		'line-height': '1.8',
+		'-moz-border-radius': '6px',
+		'border-radius': '6px',
+		'-moz-opacity': '0.8',
+		opacity: '0.8',
+		padding: '3px 6px',
+		'margin-bottom': '6px',
+		display: 'block',
+		width: '150px'
+	};
+	var defaults = {
+		life: 5000,
+		type: 'ok'
+	};
 	$.extend({
-		getGrowlDivCss: function () {
-			return {
-				position: 'fixed',
-				top: '12px',
-				right: '12px',
-				'z-index': 99999,
-				display: 'block'
-			};
-		},
-		getGrowlBoxCss: function () {
-			return {
-				color: '#fff',
-				'background-color': '#333',
-				'font-size': '12px',
-				'line-height': '1.8',
-				'-moz-border-radius': '6px',
-				'border-radius': '6px',
-				'-moz-opacity': '0.8',
-				opacity: '0.8',
-				padding: '3px 6px',
-				'margin-bottom': '6px',
-				display: 'block',
-				width: '150px'
-			};
-		},
 		getGrowlDiv: function() {
 			if ($('#div_msg').size() == 0) {
 				var growlDiv = $('<div id="div_msg"></div>')
-				growlDiv.css($.getGrowlDivCss());
+				growlDiv.css(growlDivCss);
 				growlDiv.appendTo($('body'));
 			}
 			return $('#div_msg');
 		},
-		growl: function(msg, css) {
+		growl: function(msg, opts) {
+			opts = opts || {};
 			var growlDiv = $.getGrowlDiv();
 			var box = $('<div></div>');
-			box.css($.getGrowlBoxCss());
-			box.css(css);
+			var css = {};
+			var type = opts.type || defaults.type;
+			if (type == 'error') {
+				css = {
+					color: 'red',
+					'background-color': '#ffffc2'
+				};
+			}
+			var _css = $.extend({}, growlBoxCss, css);
+			box.css(_css);
 			box.appendTo(growlDiv);
 			box.html(msg).slideDown('fast', function(){
+				var life = opts.life || defaults.life;
 				setTimeout(function(){
 					box.animate({height: '0px', "margin-bottom": "0px", 'opacity' : 0}, "falst", function(){
 						box.remove();
 					});
-				}, 5000);
+				}, life);
 			});
 		}
 	});

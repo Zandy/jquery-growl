@@ -9,9 +9,8 @@
 	<body>
 		<script type="text/javascript">
 		$(function() {
-			var msg = "demo";
-			var css = {color: 'red'};
-			$.growl(msg, css);
+			$.growl("demo ok");
+			$.growl("demo error", {life: 8000, type: 'error'});
 		});
 		</script>
 	</body>
