@@ -1,6 +1,6 @@
 (function($) {
 	// @author Zandy
-	// growl 插件 -- 类似 growl @see http://www.growl.info/
+	// jquery-growl -- like growl(http://www.growl.info/).
 	function debug(obj) {
 		if (window.console && window.console.log)
 			window.console.log(obj);
