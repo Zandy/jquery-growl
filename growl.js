@@ -15,6 +15,7 @@
 	var growlBoxCss = {
 		color: '#fff',
 		'background-color': '#333',
+		'border': '1px solid #333',
 		'font-size': '12px',
 		'line-height': '1.8',
 		'-moz-border-radius': '6px',
@@ -25,6 +26,13 @@
 		'margin-bottom': '6px',
 		display: 'block',
 		width: '150px'
+	};
+	var growlBoxErrorCss = {
+		color: 'red',
+		'background-color': '#ffe57e', //ffffc2
+		'-moz-box-shadow': '0 5px 90px #888',
+		'box-shadow': '0 5px 90px #888',
+		'border': '1px solid #e2b709'
 	};
 	var defaults = {
 		life: 5000,
@@ -46,10 +54,7 @@
 			var css = {};
 			var type = opts.type || defaults.type;
 			if (type == 'error') {
-				css = {
-					color: 'red',
-					'background-color': '#ffffc2'
-				};
+				css = growlBoxErrorCss;
 			}
 			var _css = $.extend({}, growlBoxCss, css);
 			box.css(_css);
