@@ -28,11 +28,11 @@
 		width: '150px'
 	};
 	var growlBoxErrorCss = {
-		color: 'red',
-		'background-color': '#ffe57e', //ffffc2
+		color: '#000',
+		'background-color': '#ffc',
 		'-moz-box-shadow': '0 5px 90px #888',
 		'box-shadow': '0 5px 90px #888',
-		'border': '1px solid #e2b709'
+		'border': '1px solid #fc6'
 	};
 	var defaults = {
 		life: 5000,
