@@ -57,12 +57,19 @@
 				css = growlBoxErrorCss;
 			}
 			var _css = $.extend({}, growlBoxCss, css);
+			for (var i in opts) {
+				for (var j in _css) {
+					if (i == j) {
+						_css[i] = opts[i];
+					}
+				}
+			}
 			box.css(_css);
 			box.appendTo(growlDiv);
 			box.html(msg).slideDown('fast', function(){
 				var life = opts.life || defaults.life;
 				setTimeout(function(){
-					box.animate({height: '0px', "margin-bottom": "0px", 'opacity' : 0}, "falst", function(){
+					box.animate({height: '0px', "margin-bottom": "0px", 'opacity' : 0}, "fast", function(){
 						box.remove();
 					});
 				}, life);
