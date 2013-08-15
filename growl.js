@@ -4,9 +4,9 @@
 	function debug(obj) {
 		if (window.console && window.console.log)
 			window.console.log(obj);
-	};
+	}
 	var growlDivCss = {
-		position: 'fixed',
+		position: !-[1,] ? 'absolute' : 'fixed',
 		top: '12px',
 		right: '12px',
 		'z-index': 99999,
@@ -41,7 +41,7 @@
 	$.extend({
 		getGrowlDiv: function() {
 			if ($('#div_msg').size() == 0) {
-				var growlDiv = $('<div id="div_msg"></div>')
+				var growlDiv = $('<div id="div_msg"></div>');
 				growlDiv.css(growlDivCss);
 				growlDiv.appendTo($('body'));
 			}
@@ -66,10 +66,10 @@
 			}
 			box.css(_css);
 			box.appendTo(growlDiv);
-			box.html(msg).slideDown('fast', function(){
+			box.html(msg).slideDown('fast', function() {
 				var life = opts.life || defaults.life;
-				setTimeout(function(){
-					box.animate({height: '0px', "margin-bottom": "0px", 'opacity' : 0}, "fast", function(){
+				setTimeout(function() {
+					box.animate({height: '0px', "margin-bottom": "0px", 'opacity' : 0}, "fast", function() {
 						box.remove();
 					});
 				}, life);
