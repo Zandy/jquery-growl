@@ -25,7 +25,10 @@
 		padding: '3px 6px',
 		'margin-bottom': '6px',
 		display: 'block',
-		width: '150px'
+		width: '150px',
+		'position': 'relative',
+		top: '0px',
+		right: '0px'
 	};
 	var growlBoxErrorCss = {
 		color: '#000',
@@ -50,7 +53,7 @@
 		growl: function(msg, opts) {
 			opts = opts || {};
 			var growlDiv = $.getGrowlDiv();
-			var box = $('<div></div>');
+			var box = $('<div class="div_box"><span title="Close it!" class="div_box_close_span" style="float: right; cursor: pointer; font-size: 16px; width: 16px; font-family: verdana, arial, helvetica, sans-serif, \'Microsoft Yahei\'">X</span></div>');
 			var css = {};
 			var type = opts.type || defaults.type;
 			if (type == 'error') {
@@ -66,13 +69,18 @@
 			}
 			box.css(_css);
 			box.appendTo(growlDiv);
-			box.html(msg).slideDown('fast', function() {
+			box.append(msg).slideDown('fast', function() {
 				var life = opts.life || defaults.life;
 				setTimeout(function() {
 					box.animate({height: '0px', "margin-bottom": "0px", 'opacity' : 0}, "fast", function() {
 						box.remove();
 					});
 				}, life);
+			});
+			box.find(".div_box_close_span").click(function(){
+				box.animate({height: '0px', "margin-bottom": "0px", 'opacity' : 0}, "fast", function() {
+					box.remove();
+				});
 			});
 		}
 	});
